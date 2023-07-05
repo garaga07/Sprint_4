@@ -36,13 +36,6 @@
             <artifactId>webdrivermanager</artifactId>
             <version>5.4.0</version>
         </dependency>
-        <!-- Зависимость Gecko Driver для взаимодействия с браузером FireFox -->
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>5.4.0</version>
-        </dependency>
-
     </dependencies>
 
 </project>

@@ -6,33 +6,39 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class OrderPage {
     private WebDriver driver;
     // Локатор поля Имя
-    private final By inputFirstName = By.cssSelector("input[placeholder='* Имя']");
+    private By inputFirstName = By.cssSelector("input[placeholder='* Имя']");
     // Локатор поля Фамилия
-    private final By inputLastName = By.cssSelector("input[placeholder='* Фамилия']");
+    private By inputLastName = By.cssSelector("input[placeholder='* Фамилия']");
     // Локатор поля Адрес
-    private final By inputAddress = By.cssSelector("input[placeholder='* Адрес: куда привезти заказ']");
+    private By inputAddress = By.cssSelector("input[placeholder='* Адрес: куда привезти заказ']");
     // Локатор поля селекта с выбором станции
-    private final By inputRailWayStation = By.cssSelector("input[placeholder='* Станция метро']");
+    private By inputRailWayStation = By.cssSelector("input[placeholder='* Станция метро']");
     // Локатор элемента из списка станций
-    private final By inputStationValue = By.xpath(".//li[@data-value='1']");
+    private By inputStationValue = By.xpath(".//li[@data-value='1']");
     // Локатор поля Телефон
-    private final By inputTelephone = By.cssSelector("input[placeholder = '* Телефон: на него позвонит курьер']");
+    private By inputTelephone = By.cssSelector("input[placeholder = '* Телефон: на него позвонит курьер']");
     // Локатор кнопки Далее
-    private final By nextButton = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
+    private By nextButton = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
     // Локатор поля даты
-    private final By inputData = By.cssSelector("input[placeholder='* Когда привезти самокат']");
+    private By inputData = By.cssSelector("input[placeholder='* Когда привезти самокат']");
     // Локатор поля выбора срока аренды
-    private final By dropDownRentPeriod = By.xpath(".//div[@class='Dropdown-placeholder']");
+    private By dropDownRentPeriod = By.xpath(".//div[@class='Dropdown-placeholder']");
     // Локатор значения из выпадающего списка со сроком аренды
-    private final By rentPeriodValue = By.xpath(".//div[contains(@class, 'Dropdown-option') and text()='двое суток']");
+    private By rentPeriodValue = By.xpath(".//div[contains(@class, 'Dropdown-option') and text()='двое суток']");
+    //Локаторы чек-боксов
+    private static final By[] CHECK_BOX = {
+            By.id("black"),
+            By.id("grey")
+    };
+
     // Локатор поля Комментарий
-    private final By inputComment = By.cssSelector("input[placeholder = 'Комментарий для курьера']");
+    private By inputComment = By.cssSelector("input[placeholder = 'Комментарий для курьера']");
     // Локатор кнопки Заказать
-    private final By buttonOrder = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
+    private By buttonOrder = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
     // Локатор кнопки подтверждения заказа
-    private final By buttonConfirmation = By.xpath("//button[contains(@class, 'Button_Button__ra12g') and text()='Да']");
+    private By buttonConfirmation = By.xpath("//button[contains(@class, 'Button_Button__ra12g') and text()='Да']");
     // Локатор модального окна оформленного заказа
-    private final By orderModalHeader = By.xpath("//div[contains(@class, 'Order_ModalHeader__3FDaJ') and contains(text(), 'Заказ оформлен')]");
+    private By orderModalHeader = By.xpath("//div[contains(@class, 'Order_ModalHeader__3FDaJ') and contains(text(), 'Заказ оформлен')]");
 
     // Конструктор класса
     public OrderPage(WebDriver driver) {
@@ -151,6 +157,10 @@ public class OrderPage {
     public boolean isOrderModalHeaderVisible() {
         waitVisibleOrderModalHeader();
         return driver.findElement(orderModalHeader).isDisplayed();
+    }
+    //Геттер для чек-бокса в параметризации
+     public static By[] getCheckBox(){
+            return CHECK_BOX;
     }
 
     // Метод для открытия указанного URL

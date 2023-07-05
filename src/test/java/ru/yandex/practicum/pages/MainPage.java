@@ -9,10 +9,38 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static junit.framework.TestCase.assertEquals;
 
 public class MainPage {
-    // Переменные для передачи локаторов аккордеона в конструктор MainPage
+    // URL для перехода
+    private static final String BASE_URL = "https://qa-scooter.praktikum-services.ru/";
     private WebDriver driver;
     //Локатор кнопки подтверждения использования настроек Куки
-    private final By buttonCookie = By.id("rcc-confirm-button");
+    private By buttonCookie = By.id("rcc-confirm-button");
+
+    //Локаторы кнопки Заказать (кнопка находится на главной странице)
+    private static final By[] BUTTON_ORDER = {
+            By.xpath(".//button[@class = 'Button_Button__ra12g']"),
+            By.xpath(".//button[@class='Button_Button__ra12g Button_UltraBig__UU3Lp']")
+    };
+    //Массивы с локаторами для параметризации
+    private static final By[] ACCORDION_HEADING = {
+        By.id("accordion__heading-0"),
+        By.id("accordion__heading-1"),
+        By.id("accordion__heading-2"),
+        By.id("accordion__heading-3"),
+        By.id("accordion__heading-4"),
+        By.id("accordion__heading-5"),
+        By.id("accordion__heading-6"),
+        By.id("accordion__heading-7")
+    };
+    private static final By[] ACCORDION_CONTENT = {
+        By.id("accordion__panel-0"),
+        By.id("accordion__panel-1"),
+        By.id("accordion__panel-2"),
+        By.id("accordion__panel-3"),
+        By.id("accordion__panel-4"),
+        By.id("accordion__panel-5"),
+        By.id("accordion__panel-6"),
+        By.id("accordion__panel-7")
+    };
 
     // Конструктор класса
     public MainPage(WebDriver driver) {
@@ -42,8 +70,6 @@ public class MainPage {
 
     // Метод для нажатия аккардеона
     public void clickAccordion(By accordionHeading) {
-        // Вызываем метод для закрытия элемента с куками, чтобы все вопросы из списка были кликабельными
-        clickCookieButton();
         WebElement accordionElement = driver.findElement(accordionHeading);
         // Прокрутка содержимого главной страницы до аккордеона
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", accordionElement);
@@ -66,5 +92,24 @@ public class MainPage {
     // Метод для проверки текста аккардеона
     public void verifyAccordionText(String expectedText, String actualText) {
         assertEquals("Текст не совпадает с ожидаемым результатом!!!", expectedText, actualText);
+    }
+
+    //Геттер для передачи BASE_URL
+    public static String getBaseUrl(){
+        return BASE_URL;
+    }
+
+
+    //Геттеры для передачи поисковых локаторов в параметрах
+    public static By[] getAccordionHeading(){
+        return ACCORDION_HEADING;
+    }
+
+    public static By[] getAccordionContent(){
+        return ACCORDION_CONTENT;
+    }
+    //Геттер для кнопки заказать в параметризации OrderTest
+    public static By[] getButtonOrder(){
+        return BUTTON_ORDER;
     }
 }
