@@ -15,11 +15,10 @@ public class MainPage {
     //Локатор кнопки подтверждения использования настроек Куки
     private By buttonCookie = By.id("rcc-confirm-button");
 
-    //Локаторы кнопки Заказать (кнопка находится на главной странице)
-    private static final By[] BUTTON_ORDER = {
-            By.xpath(".//button[@class = 'Button_Button__ra12g']"),
-            By.xpath(".//button[@class='Button_Button__ra12g Button_UltraBig__UU3Lp']")
-    };
+    //Локаторы кнопки Заказать
+    private static final By BUTTON_ORDER_TOP = By.xpath(".//button[@class = 'Button_Button__ra12g']");
+    private static final By BUTTON_ORDER_BOTTOM = By.xpath(".//button[@class='Button_Button__ra12g Button_UltraBig__UU3Lp']");
+
     //Массивы с локаторами для параметризации
     private static final By[] ACCORDION_HEADING = {
         By.id("accordion__heading-0"),
@@ -109,7 +108,10 @@ public class MainPage {
         return ACCORDION_CONTENT;
     }
     //Геттер для кнопки заказать в параметризации OrderTest
-    public static By[] getButtonOrder(){
-        return BUTTON_ORDER;
+    public static By getButtonOrderTop(){
+        return BUTTON_ORDER_TOP;
+    }
+    public static By getButtonOrderBottom(){
+        return BUTTON_ORDER_BOTTOM;
     }
 }

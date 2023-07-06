@@ -1,24 +1,16 @@
 package ru.yandex.practicum.tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.By;
 import ru.yandex.practicum.pages.MainPage;
 
 @RunWith(Parameterized.class)
-public class AccordionTest {
-
-    private WebDriver driver;
-    private  By accordionHeading;
-    private  By accordionContent;
-    private  String expectedText;
+public class AccordionTest extends BaseTest {
+    private By accordionHeading;
+    private By accordionContent;
+    private String expectedText;
 
     public AccordionTest(By accordionHeading, By accordionContent, String expectedText) {
         this.accordionHeading = accordionHeading;
@@ -40,15 +32,6 @@ public class AccordionTest {
         };
     }
 
-    @Before
-    public void setup() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-    }
-
     @Test
     public void verifyAccordionTextTest() {
         MainPage objMainPage = new MainPage(driver);
@@ -57,10 +40,5 @@ public class AccordionTest {
         objMainPage.clickAccordion(accordionHeading);
         String actualText = objMainPage.getTextAccordion(accordionContent);
         objMainPage.verifyAccordionText(expectedText, actualText);
-    }
-    //Закрываем браузер
-    @After
-    public void teardown() {
-        driver.quit();
     }
 }

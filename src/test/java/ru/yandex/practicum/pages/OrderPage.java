@@ -12,7 +12,7 @@ public class OrderPage {
     // Локатор поля Адрес
     private By inputAddress = By.cssSelector("input[placeholder='* Адрес: куда привезти заказ']");
     // Локатор поля селекта с выбором станции
-    private By inputRailWayStation = By.cssSelector("input[placeholder='* Станция метро']");
+    private By inputStation = By.xpath("//input[@placeholder='* Станция метро']");
     // Локатор элемента из списка станций
     private By inputStationValue = By.xpath(".//li[@data-value='1']");
     // Локатор поля Телефон
@@ -75,7 +75,7 @@ public class OrderPage {
 
     // Метод нажатия в поле Станция метро
     public void inputRailWayStationClick() {
-        driver.findElement(inputRailWayStation).click();
+        driver.findElement(inputStation).click();
     }
 
     // Метод ожидания кликабельности элемента из выпадающего списка станций метро
